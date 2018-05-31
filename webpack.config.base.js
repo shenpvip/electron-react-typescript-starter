@@ -3,15 +3,24 @@
  */
 
 const path = require('path');
-const {dependencies: externals} = require('./app/package.json');
+const { dependencies: externals } = require('./app/package.json');
 
 module.exports = {
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.tsx?$/,
-			loaders: ['react-hot-loader/webpack', 'ts-loader'],
-			exclude: /node_modules/
-		}, {
+			use: [
+				{
+					loader: 'babel-loader',
+					options: {
+						babelrc: false,
+						plugins: ['react-hot-loader/babel'],
+					},
+				},
+				'ts-loader', // (or awesome-typescript-loader)
+			]
+		},
+		{
 			test: /\.json$/,
 			loader: 'json-loader'
 		}]

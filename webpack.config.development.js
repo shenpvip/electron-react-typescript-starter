@@ -13,6 +13,8 @@ const port = process.env.PORT || 3000;
 module.exports = merge.smart(baseConfig, {
 	devtool: 'inline-source-map',
 
+	mode: 'development',
+
 	entry: [
 		'react-hot-loader/patch',
 		`webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr&reload=true`,
@@ -31,20 +33,20 @@ module.exports = merge.smart(baseConfig, {
 		//     exclude: /node_modules/
 		//   }
 		// ],
-		loaders: [
+		rules: [
 			{
 				test: /\.global\.css$/,
-				loaders: [
-					'style-loader',
-					'css-loader?sourceMap'
+				use: [
+					{ loader: "style-loader" },
+					{ loader: "css-loader" }
 				]
 			},
 
 			{
 				test: /^((?!\.global).)*\.css$/,
-				loaders: [
-					'style-loader',
-					'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+				use: [
+					{ loader: "style-loader" },
+					{ loader: "css-loader" }
 				]
 			},
 
