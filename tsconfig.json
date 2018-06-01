@@ -11,6 +11,7 @@
       "scripthost"
     ],
     "types": [],
+    "allowSyntheticDefaultImports": true, // import React from 'react'
     "alwaysStrict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
